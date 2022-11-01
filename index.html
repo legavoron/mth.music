@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="manifest" href="icons/site.webmanifest">
+    <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#1e5a32">
+    <meta name="msapplication-TileColor" content="#1e5a32">
+    <meta name="theme-color" content="#1E5A32">
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <title>Methed.Music</title>
+    
+</head>
+<body>
+    <header class="header">
+        <h1 class="visualy-hidden">Methed.music - лучший сервис для воиспроизведения музыки</h1>
+
+    <div class="header__container">
+        <img class="header__logo" src="img/logo.svg" alt="Логотип Methed Music">
+        <form class="header__search search">
+            <input class="search__input" type="search">
+            <button class="search__btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" />
+                    </svg>
+            </button>
+            <button class="header__favorite_btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" fill="white"/>
+                    </svg>
+            </button>
+        </form>
+    </div>
+    </header>
+
+    <section class="catalog">
+        <h2 class="visualy-hidden">Список треков</h2>
+
+        <div class="catalog__container">
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_1.jpg" 
+                        alt="Save your tears- The weeknd"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Save your tears</p>
+                    <p class="track_artist">The weeknd</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_2.jpg" 
+                        alt="Follow You- Imagine Dragons"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Follow You</p>
+                    <p class="track_artist">Imagine Dragons</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_3.jpg" 
+                        alt="Dirt Femme- How Long"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Dirt Femme</p>
+                    <p class="track_artist">How Long</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_4.jpg" 
+                        alt="Another Love- Tom Odell"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Another Love</p>
+                    <p class="track_artist">Tom Odell</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_5.jpg" 
+                        alt="Born to Die- Lana Del Rey"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Born to Die</p>
+                    <p class="track_artist">Lana Del Rey</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_6.jpg" 
+                        alt="Hello- Adele"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Hello</p>
+                    <p class="track_artist">Adele</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_7.jpg" 
+                        alt="Can't Pretend- Tom Odell"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Can't Pretend</p>
+                    <p class="track_artist">Tom Odell</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_8.jpg" 
+                        alt="Young and Beautiful- Lana Del Rey"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Young and Beautiful</p>
+                    <p class="track_artist">Lana Del Rey</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_9.jpg" 
+                        alt="Someone Like You- Adele"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Someone Like You</p>
+                    <p class="track_artist">Adele</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_10.jpg" 
+                        alt="Natural- Imagine Dragons"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">Natural</p>
+                    <p class="track_artist">Imagine Dragons</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_11.jpg" 
+                        alt="laugh now cry later- Drake"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info">
+                    <p class="track_title">laugh now cry later</p>
+                    <p class="track_artist">Drake</p>
+                </div>
+            </button>
+
+            <button class="catalog__tem track">
+                <div class="track__img-wrap">
+                    <img 
+                        class="track__poster" 
+                        src="img/foto_12.jpg" 
+                        alt="Frozen- Madonna"
+                        width="180"
+                        height="180">
+                </div>
+                <div class="track__info track-info">
+                    <p class="track-info_title">Frozen</p>
+                    <p class="track-info_artist">Madonna</p>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <section class="player player_active">
+        <h2 class="visualy-hidden">Плеер</h2>
+
+        <div class="player__container">
+            <div class="player__track-info track-info">
+                <p class="track-info_title">Frozen</p>
+                <p class="track-info_artist">Madonna</p>
+            </div>
+        </div>
+
+        <div class="player__controller">
+            <button class="player__icon player__icon_stop"></button>
+            <button class="player__icon player__icon_prev"></button>
+            <button class="player__icon player__icon_pause"></button>
+            <button class="player__icon player__icon_next"></button>
+            <button class="player__icon player__icon_like"></button>
+
+            <div class="player__progress-wrap">
+                <div class="player__progress">
+                    <input class="player__progress-input" type="range" min="0" max="100" value="0">
+                </div>
+                <div class="player__time">
+                    <span class="player__tyme-passed">0:24</span>
+                    <span>/</span>
+                    <span class="player__tyme-total">04:31</span>
+                </div>
+            </div>
+
+            <div class="player__volume-wrap">
+                   <div class="player__volume">
+                        <input class="player__volume-input" type="range" min="0" max="100" value="100">
+                   </div> 
+
+                   <button class="player__icon player__icon_mute"></button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
