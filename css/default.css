@@ -51,3 +51,10 @@ h1, h2, h3, p {
     position: fixed;
     transform: scale(0);
 }
+
+@media(max-width: 740px) {
+    body {
+        padding-bottom: 187px;
+    }
+}
+

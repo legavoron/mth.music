@@ -12,3 +12,18 @@
     font-weight: 300;
     font-size: 14px;
 }
+
+@media(max-width: 560px) {
+    .track__info {
+        padding: 8px
+    }
+    
+    .track_title {
+        font-style: 14px;
+        margin-bottom: 4px;
+    }
+    
+    .track_artist {
+        font-size: 14px;
+    }
+}
