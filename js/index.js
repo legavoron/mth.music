@@ -1,89 +1,6 @@
-const dataMusic = [
-    {
-      id: '1',
-      artist: 'The weeknd',
-      track: 'Save your tears',
-      poster: 'img/photo1.jpg',
-      mp3: 'audio/The Weeknd - Save Your Tears.mp3',
-    },
-    {
-      id: '2',
-      artist: 'Imagine Dragons',
-      track: 'Follow You',
-      poster: 'img/photo2.jpg',
-      mp3: 'audio/Imagine Dragons - Follow You.mp3',
-    },
-    {
-      id: '3',
-      artist: 'Tove Lo',
-      track: 'How Long',
-      poster: 'img/photo3.jpg',
-      mp3: 'audio/Tove Lo - How Long.mp3',
-    },
-    {
-      id: '4',
-      artist: 'Tom Odell',
-      track: 'Another Love',
-      poster: 'img/photo4.jpg',
-      mp3: 'audio/Tom Odell - Another Love.mp3',
-    },
-    {
-      id: '5',
-      artist: 'Lana Del Rey',
-      track: 'Born To Die',
-      poster: 'img/photo5.jpg',
-      mp3: 'audio/Lana Del Rey - Born To Die.mp3',
-    },
-    {
-      id: '6',
-      artist: 'Adele',
-      track: 'Hello',
-      poster: 'img/photo6.jpg',
-      mp3: 'audio/Adele - Hello.mp3',
-    },
-    {
-      id: '7',
-      artist: 'Tom Odell',
-      track: "Can't Pretend",
-      poster: 'img/photo7.jpg',
-      mp3: "audio/Tom Odell - Can't Pretend.mp3",
-    },
-    {
-      id: '8',
-      artist: 'Lana Del Rey',
-      track: 'Young And Beautiful',
-      poster: 'img/photo8.jpg',
-      mp3: 'audio/Lana Del Rey - Young And Beautiful.mp3',
-    },
-    {
-      id: '9',
-      artist: 'Adele',
-      track: 'Someone Like You',
-      poster: 'img/photo9.jpg',
-      mp3: 'audio/Adele - Someone Like You.mp3',
-    },
-    {
-      id: '10',
-      artist: 'Imagine Dragons',
-      track: 'Natural',
-      poster: 'img/photo10.jpg',
-      mp3: 'audio/Imagine Dragons - Natural.mp3',
-    },
-    {
-      id: '11',
-      artist: 'Drake',
-      track: 'Laugh Now Cry Later',
-      poster: 'img/photo11.jpg',
-      mp3: 'audio/Drake - Laugh Now Cry Later.mp3',
-    },
-    {
-      id: '12',
-      artist: 'Madonna',
-      track: 'Frozen',
-      poster: 'img/photo12.jpg',
-      mp3: 'audio/Madonna - Frozen.mp3',
-    },
-];
+const API_URL = 'http://localhost:3024/';
+
+let dataMusic = [];
 
 let playlist = [];
 
@@ -104,12 +21,16 @@ const nextBtn = document.querySelector('.player__controller-next');
 const likeBtn = document.querySelector('.player__controller-like');
 const muteBtn = document.querySelector('.player__icon_mute');
 const playerProgressInput = document.querySelector('.player__progress-input');
-
+const activeTrackTitle = document.querySelector('.track-info_title');
+const activeTrackArtist = document.querySelector('.track-info_artist');
 
 const playerTimePassed = document.querySelector('.player__time-passed');
 const playerTimeTotal = document.querySelector('.player__time-total');
 const playerVolumeInput = document.querySelector('.player__volume-input');
 
+const search = document.querySelector('.search');
+const message = document.querySelector('.tracksList-hidden');
+const messageArr = [];
 
 const catalogAddBtn = document.createElement('button');
 catalogAddBtn.classList.add('catalog__btn-add');
@@ -168,12 +89,16 @@ const playMusic = event => {
         return id === item.id
 });
 
-    audio.src = track.mp3;
+    audio.src = `${API_URL}${track.mp3}`;
+
+    activeTrackTitle.innerHTML = track.track;
+    activeTrackArtist.innerHTML = track.artist;
 
     audio.play();
     pauseBtnt.classList.remove('player__icon_play');
     pauseBtnt.classList.add('player__icon_pause');
     player.classList.add('player_active');
+    player.dataset.idTrack = id;
 
     const prevTrack = i === 0 ? playlist.length - 1 : i - 1;
     const nextTrack = i + 1 === playlist.length ?  0 : i + 1;
@@ -214,31 +139,47 @@ const createCard = (data) => {
     const card = document.createElement('div');
     card.style.cursor = 'pointer';
     card.classList.add('catalog__tem', 'track');
+    if (player.dataset.idTrack === data.id) {
+        card.classList.add('track_active');
+        if (audio.paused) {
+            card.classList.add('track_pause');
+        }
+    }
     card.dataset.idTrack = data.id;
 
     card.innerHTML = `
         <div class="track__img-wrap">
             <img 
                 class="track__poster" 
-                src="${data.poster}" 
+                src="${API_URL}${data.poster}" 
                 alt="${data.artist} ${data.track}"
                 width="180"
                 height="180">
         </div>
         <div class="track__info">
-            <p class="track_title">${data.track}u</p>
+            <p class="track_title">${data.track}</p>
             <p class="track_artist">${data.artist}</p>
         </div>
     `
     return card;
 }
 
-const renderCatalog = (dataList) => {
-    playlist = [...dataList];
-    catalogContainer.textContent = '';
-    const listCards = playlist.map(createCard);
-    catalogContainer.append(...listCards);
-    addHandlerTrack();
+const renderCatalog = (dataList = null) => {
+    // message.classList.remove('tracksList-hidden-show');
+
+
+    if (dataList) {
+        playlist = [...dataList];
+        catalogContainer.textContent = '';
+        const listCards = playlist.map(createCard);
+        catalogContainer.append(...listCards);
+        addHandlerTrack();
+    } else {
+        catalogContainer.textContent = '';
+        message.style.display = 'block';
+        catalogContainer.style.gridTemplateColumns = 'auto';
+        catalogContainer.append(message);
+    }
 }
 
 
@@ -271,9 +212,14 @@ const updateTime = () => {
 }
 
 
-const init = () => {
+const init = async () => {
     audio.volume = localStorage.getItem('volume') || 1;
     player.volume = audio.volume * 100;
+
+
+    dataMusic = await fetch(`${API_URL}api/music`).then((data) => data.json());
+
+
     renderCatalog(dataMusic);
     checkCount();
 
@@ -341,6 +287,21 @@ const init = () => {
         }
     })
 
+    search.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        playlist = await fetch(`${API_URL}api/music?search=${search.search.value}`).then((data) => data.json());
+
+        if (playlist.length) {
+            renderCatalog(playlist);
+            checkCount();
+        } else {
+            // message.classList.add ('tracksList-hidden-show');
+            renderCatalog();
+        }
+
+        
+    })
 }
 
 init();
